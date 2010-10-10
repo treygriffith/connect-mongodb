@@ -16,6 +16,7 @@ via npm:
 
 ## Options
 
+  * `dbname` MongoDB db name
   * `host` MongoDB server hostname
   * `port` MongoDB server portno
   * `collection` MongoDB collection to host sessions. 'sessions' by default.
