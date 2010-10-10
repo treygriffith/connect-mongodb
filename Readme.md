@@ -1,6 +1,7 @@
 # Connect MongoDB
 
 connect-mongodb is a MongoDB session store backed by [node-mongodb-native](http://github.com/christkv/node-mongodb-native).
+Written by [dvv](http://github.com/dvv)
 
 ## Installation
 
