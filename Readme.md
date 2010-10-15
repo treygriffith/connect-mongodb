@@ -27,6 +27,11 @@ via npm:
           , mongoStore = require('connect-mongodb');
 
     connect.createServer(
+      connect.bodyDecoder(), // Always before the session
       connect.cookieDecoder(),
       connect.session({ store: mongoStore() })
     );
+
+## Warning
+
+If you use the bodyDecoder middleware, place it *before* the session one!

@@ -25,14 +25,15 @@ http.IncomingMessage.prototype.flash = function(type, msg){
 var mongoStore = mongoStore({ maxAge: 60000 * 2 });
 
 connect.createServer(
+
+    // Always before session!
+    connect.bodyDecoder(),
+
     // session requires cookieDecoder
     connect.cookieDecoder(),
 
     // Pass custom session store
     connect.session({ store: mongoStore }),
-
-    // OMG!
-    connect.bodyDecoder(),
 
     // Ignore favicon
     function(req, res, next){
@@ -55,7 +56,7 @@ connect.createServer(
                 var msgs = req.flash('info').join('\n');
                 res.writeHead(200, { 'Content-Type': 'text/html' });
                 res.write(msgs);
-                res.write('<form method="post"><input type="hidden" name="foo" value="bar" /><input type="submit" value="POST requests fail!" /></form>');
+                res.write('<form method="post"><input type="hidden" name="foo" value="bar" /><input type="submit" value="POST request!" /></form>');
                 res.write('<p>online : ' + len + '</p>');
                 res.end('<p>views: ' + req.session.count + '</p>');
             } else {
