@@ -1,8 +1,8 @@
 {
   "name": "connect-mongodb",
   "description": "MongoDB session store for Connect",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Vladimir Dronnikov <dronnikov@gmail.com>",
-  "directories": { "lib": "." },
+  "dependencies": { "mongodb": ">=0.7.9"},
   "engines": { "node": ">= 0.1.98" }
 }
