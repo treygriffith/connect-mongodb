@@ -4,6 +4,6 @@
   "version": "0.0.2",
   "author": "Vladimir Dronnikov <dronnikov@gmail.com>",
   "dependencies": { "mongodb": ">=0.7.9"},
-  "main": "./lib/connect-mongodb.js",
+  "main": "./lib/connect-mongodb",
   "engines": { "node": ">= 0.1.98" }
 }
