@@ -16,22 +16,26 @@ via npm:
 
 ## Options
 
-  * `dbname` MongoDB db name
-  * `host` MongoDB server hostname
-  * `port` MongoDB server portno
-  * `collection` MongoDB collection to host sessions. 'sessions' by default.
+  * `dbname` MongoDB db name _'dev' by default_
+  * `host` MongoDB server hostname _'127.0.0.1' by default_
+  * `port` MongoDB server port _27017 by default_
+  * `username` MongoDB server username
+  * `password` MongoDB server password
+  * `collection` MongoDB collection to host sessions. _'sessions' by default_
 
 ## Example
 
-    var connect = require('connect')
-          , mongoStore = require('connect-mongodb');
+    var connect = require('connect'),
+        mongoStore = require('connect-mongodb');
 
     connect.createServer(
       connect.bodyDecoder(), // Always before the session
       connect.cookieDecoder(),
-      connect.session({ store: mongoStore() })
+      connect.session({
+        store: mongoStore()
+      })
     );
 
 ## Warning
 
-If you use the bodyDecoder middleware, place it *before* the session one!
+If you use the bodyDecoder middleware, place it *before* the session one! In some connect versions it breaks async session stores.
