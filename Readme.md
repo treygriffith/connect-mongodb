@@ -31,9 +31,11 @@ via npm:
     connect.createServer(
       connect.bodyDecoder(), // Always before the session
       connect.cookieDecoder(),
-      connect.session({
-        store: mongoStore()
-      })
+      connect.session({store: mongoStore({
+        dbname: 'production',
+        username: 'foo',
+        password: 'bar'
+      })})
     );
 
 ## Warning
