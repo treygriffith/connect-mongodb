@@ -1,7 +1,7 @@
 {
   "name": "connect-mongodb",
   "description": "MongoDB session store for Connect",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Vladimir Dronnikov <dronnikov@gmail.com>",
   "contributors": ["Pau Ramon <masylum@gmail.com>", "ramv"],
   "dependencies": { "mongodb": ">=0.7.9"},
