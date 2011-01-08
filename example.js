@@ -22,7 +22,7 @@ http.IncomingMessage.prototype.flash = function (type, msg) {
 };
 
 // Expire after two minutes
-var mongoStore = mongoStore({ maxAge: 60000 * 2 });
+var mongoStore = mongoStore({maxAge: 60000 * 2});
 
 connect.createServer(
 
@@ -72,4 +72,3 @@ connect.createServer(
 ).listen(3000);
 
 sys.puts('Connect server started on port 3000');
-
