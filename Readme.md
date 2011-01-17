@@ -16,11 +16,20 @@ via npm:
 
 ## Options
 
+You can build your MongoDB connection url passing an object with the following parameters:
+
   * `dbname` MongoDB db name _'dev' by default_
   * `host` MongoDB server hostname _'127.0.0.1' by default_
   * `port` MongoDB server port _27017 by default_
   * `username` MongoDB server username
   * `password` MongoDB server password
+
+Or just the url:
+
+  * `url` MongoDB connection url
+
+You can also specify where do you want to store your sessions:
+
   * `collection` MongoDB collection to host sessions. _'sessions' by default_
 
 ## Example
