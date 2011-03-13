@@ -12,12 +12,22 @@ via npm:
 
 ## Options
 
-  * `dbname` mongoDB db name _'dev' by default_
-  * `host` mongoDB server hostname _'127.0.0.1' by default_
-  * `port` mongoDB server port _27017 by default_
-  * `username` mongoDB server username
-  * `password` mongoDB server password
-  * `collection` mongoDB collection to host sessions. _'sessions' by default_
+
+You can build your MongoDB connection url passing an object with the following parameters:
+
+  * `dbname` MongoDB db name _'dev' by default_
+  * `host` MongoDB server hostname _'127.0.0.1' by default_
+  * `port` MongoDB server port _27017 by default_
+  * `username` MongoDB server username
+  * `password` MongoDB server password
+
+Or just the url:
+
+  * `url` MongoDB connection url
+
+Other options:
+
+  * `collection` MongoDB collection to host sessions. _'sessions' by default_
   * `reapInterval` ms to check expired sessions to remove on db
 
 ## Example
