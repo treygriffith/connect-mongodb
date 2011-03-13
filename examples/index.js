@@ -1,11 +1,7 @@
-/**
- * Module dependencies.
- */
-
 var sys = require('sys'),
     http = require('http'),
     connect = require('connect'),
-    mongoStore = require('./index');
+    mongoStore = require('../lib/connect-mongodb');
 
 http.IncomingMessage.prototype.flash = function (type, msg) {
   var msgs = this.session.flash = this.session.flash || {};
@@ -22,18 +18,13 @@ http.IncomingMessage.prototype.flash = function (type, msg) {
 };
 
 // Expire after two minutes
-var mongoStore = mongoStore({maxAge: 60000 * 2});
+var mongoStore = mongoStore({reapInterval: 10000});
 
 connect.createServer(
 
-    // Always before session!
-    connect.bodyDecoder(),
-
-    // session requires cookieDecoder
-    connect.cookieDecoder(),
-
-    // Pass custom session store
-    connect.session({ store: mongoStore }),
+    connect.bodyParser(),
+    connect.cookieParser(),
+    connect.session({cookie: {maxAge: 10000}, store: mongoStore, secret: 'foo'}),
 
     // Ignore favicon
     function (req, res, next) {
@@ -62,7 +53,7 @@ connect.createServer(
         } else {
           // regenerate session after 10 views
           req.session.regenerate(function(){
-            req.flash('info', 'sess key is now <strong>' + req.sessionHash + '</strong>');
+            req.flash('info', 'sess key is now <strong>' + req.sessionID + '</strong>');
             res.writeHead(200, { 'Content-Type': 'text/html' });
             res.end('regenerated session');
           });
