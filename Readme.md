@@ -32,6 +32,8 @@ Other options:
 
 ## Example
 
+You have a complete example on `examples/index.js`.
+
     var connect = require('connect'),
         mongoStore = require('connect-mongodb');
 
@@ -48,3 +50,9 @@ Other options:
         })
       })
     );
+
+## test
+
+To run the tests:
+
+    node test
