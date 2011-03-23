@@ -17,14 +17,12 @@ http.IncomingMessage.prototype.flash = function (type, msg) {
   }
 };
 
-// Expire after two minutes
-var mongoStore = mongoStore({reapInterval: 10000});
-
 connect.createServer(
 
     connect.bodyParser(),
     connect.cookieParser(),
-    connect.session({cookie: {maxAge: 10000}, store: mongoStore, secret: 'foo'}),
+    // reap every 5 seconds, 10 seconds maxAge
+    connect.session({cookie: {maxAge: 10000}, store: mongoStore({reapInterval: 5000}), secret: 'foo'}),
 
     // Ignore favicon
     function (req, res, next) {
@@ -39,7 +37,7 @@ connect.createServer(
     // Increment views
     function (req, res) {
       req.session.count = req.session.count || 0
-        ++req.session.count;
+      ++req.session.count;
 
       // Display online count
       req.sessionStore.length(function(err, len){
