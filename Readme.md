@@ -1,6 +1,6 @@
 # connect-mongodb
 
-connect-mongodb is a MongoDB session store backed by [node-mongodb-native](http://github.com/christkv/node-mongodb-native).
+connect-mongodb is a mongoDB session store backed by [node-mongodb-native](http://github.com/christkv/node-mongodb-native).
 
 Originally written by [dvv](http://github.com/dvv)
 
@@ -11,7 +11,6 @@ via npm:
     $ npm install connect-mongodb
 
 ## Options
-
 
 You can build your MongoDB connection url passing an object with the following parameters:
 
@@ -43,7 +42,7 @@ You have a complete example on `examples/index.js`.
       connect.session({
         cookie: {maxAge: 60000 * 20}, // 20 minutes
         secret: 'foo',
-        store: mongoStore({
+        store: new mongoStore({
           dbname: 'production',
           username: 'foo',
           password: 'bar'

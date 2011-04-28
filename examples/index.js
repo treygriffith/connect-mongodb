@@ -1,7 +1,8 @@
 var sys = require('sys'),
     http = require('http'),
     connect = require('connect'),
-    mongoStore = require('../lib/connect-mongodb');
+    mongoStore = require('../lib/connect-mongodb'),
+    mongo_store = new mongoStore({reapInterval: 5000});
 
 http.IncomingMessage.prototype.flash = function (type, msg) {
   var msgs = this.session.flash = this.session.flash || {};
@@ -22,7 +23,7 @@ connect.createServer(
     connect.bodyParser(),
     connect.cookieParser(),
     // reap every 5 seconds, 10 seconds maxAge
-    connect.session({cookie: {maxAge: 10000}, store: mongoStore({reapInterval: 5000}), secret: 'foo'}),
+    connect.session({cookie: {maxAge: 10000}, store: mongo_store, secret: 'foo'}),
 
     // Ignore favicon
     function (req, res, next) {
