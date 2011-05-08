@@ -52,38 +52,38 @@ You have a complete example on `examples/index.js`.
 
 ## Host - Port Examples for Replica Sets
 
-instances running on separate machines
+Instances running on separate machines:
 
-{
-  cookie: {maxAge: 60000 * 20}, // 20 minutes
-  secret: 'foo',
-  store: new mongoStore({
-    host: ['xx.xxx.xxx.xx', 'xx.xxx.xx.xxx', 'xx.xxx.xx.xxx'],
-    port: 27017
-  })
-}
+    {
+      cookie: {maxAge: 60000 * 20}, // 20 minutes
+      secret: 'foo',
+      store: new mongoStore({
+        host: ['xx.xxx.xxx.xx', 'xx.xxx.xx.xxx', 'xx.xxx.xx.xxx'],
+        port: 27017
+      })
+    }
 
-instances running on separate ports
+...separate ports:
 
-{
-  cookie: {maxAge: 60000 * 20}, // 20 minutes
-  secret: 'foo',
-  store: new mongoStore({
-    host: 'localhost',
-    port: [27017, 27017, 27018]
-  })
-}
+    {
+      cookie: {maxAge: 60000 * 20}, // 20 minutes
+      secret: 'foo',
+      store: new mongoStore({
+        host: 'localhost',
+        port: [27017, 27017, 27018]
+      })
+    }
 
-or some combination
+Or some combination:
 
-{
-  cookie: {maxAge: 60000 * 20}, // 20 minutes
-  secret: 'foo',
-  store: new mongoStore({
-    host: ['xx.xxx.xxx.xx', 'xx.xxx.xx.xxx', 'xx.xxx.xx.xxx'],
-    port: [27017, 27017, 27018]
-  })
-}
+    {
+      cookie: {maxAge: 60000 * 20}, // 20 minutes
+      secret: 'foo',
+      store: new mongoStore({
+        host: ['xx.xxx.xxx.xx', 'xx.xxx.xx.xxx', 'xx.xxx.xx.xxx'],
+        port: [27017, 27017, 27018]
+      })
+    }
 
 ## test
 
