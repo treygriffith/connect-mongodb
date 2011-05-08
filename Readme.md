@@ -50,11 +50,10 @@ You have a complete example on `examples/index.js`.
       })
     );
 
-## Host / Port Example for Replica Sets
+## Host - Port Examples for Replica Sets
 
 instances running on separate machines
 
-...
 {
   cookie: {maxAge: 60000 * 20}, // 20 minutes
   secret: 'foo',
@@ -63,11 +62,9 @@ instances running on separate machines
     port: 27017
   })
 }
-...
 
 instances running on separate ports
 
-...
 {
   cookie: {maxAge: 60000 * 20}, // 20 minutes
   secret: 'foo',
@@ -76,11 +73,9 @@ instances running on separate ports
     port: [27017, 27017, 27018]
   })
 }
-...
 
 or some combination
 
-...
 {
   cookie: {maxAge: 60000 * 20}, // 20 minutes
   secret: 'foo',
@@ -89,7 +84,6 @@ or some combination
     port: [27017, 27017, 27018]
   })
 }
-...
 
 ## test
 
