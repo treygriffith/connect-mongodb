@@ -15,14 +15,14 @@ via npm:
 You can build your MongoDB connection url passing an object with the following parameters:
 
   * `dbname` MongoDB db name _'dev' by default_
-  * `host` MongoDB server hostname _'127.0.0.1' by default_
-  * `port` MongoDB server port _27017 by default_
+  * `host` MongoDB server hostname _'127.0.0.1' by default_ (pass an array for replica set)
+  * `port` MongoDB server port _27017 by default_ (pass an array for replica set)
   * `username` MongoDB server username
   * `password` MongoDB server password
 
 Or just the url:
 
-  * `url` MongoDB connection url
+  * `url` MongoDB connection url (comma separated list of urls for replica set)
 
 Other options:
 
@@ -49,6 +49,44 @@ You have a complete example on `examples/index.js`.
         })
       })
     );
+
+## Host / Port Example for Replica Sets
+
+// instances running on separate machines
+//...
+{
+  cookie: {maxAge: 60000 * 20}, // 20 minutes
+  secret: 'foo',
+  store: new mongoStore({
+    host: ['xx.xxx.xxx.xx', 'xx.xxx.xx.xxx', 'xx.xxx.xx.xxx'],
+    port: 27017
+  })
+}
+//...
+
+// instances running on separate ports
+//...
+{
+  cookie: {maxAge: 60000 * 20}, // 20 minutes
+  secret: 'foo',
+  store: new mongoStore({
+    host: 'localhost',
+    port: [27017, 27017, 27018]
+  })
+}
+//...
+
+// or some combination
+//...
+{
+  cookie: {maxAge: 60000 * 20}, // 20 minutes
+  secret: 'foo',
+  store: new mongoStore({
+    host: ['xx.xxx.xxx.xx', 'xx.xxx.xx.xxx', 'xx.xxx.xx.xxx'],
+    port: [27017, 27017, 27018]
+  })
+}
+//...
 
 ## test
 
