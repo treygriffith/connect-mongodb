@@ -10,6 +10,10 @@ via npm:
 
     $ npm install connect-mongodb
 
+## Updating
+
+If you update this module, please clean your sessions database as some changes may affect the way the sessions are stored.
+
 ## Options
 
 You can build your MongoDB connection url passing an object with the following parameters:
