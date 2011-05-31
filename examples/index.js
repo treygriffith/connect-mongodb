@@ -2,7 +2,7 @@ var sys = require('sys'),
     http = require('http'),
     connect = require('connect'),
     mongoStore = require('../lib/connect-mongodb'),
-    mongo_store = new mongoStore({reapInterval: 5000});
+    mongo_store = new mongoStore({reapInterval: 3000}); // check every 3 seconds
 
 http.IncomingMessage.prototype.flash = function (type, msg) {
   var msgs = this.session.flash = this.session.flash || {};
@@ -20,20 +20,11 @@ http.IncomingMessage.prototype.flash = function (type, msg) {
 
 connect.createServer(
 
+    connect.favicon(),
     connect.bodyParser(),
     connect.cookieParser(),
-    // reap every 5 seconds, 10 seconds maxAge
-    connect.session({cookie: {maxAge: 10000}, store: mongo_store, secret: 'foo'}),
-
-    // Ignore favicon
-    function (req, res, next) {
-      if (req.url === '/favicon.ico') {
-        res.writeHead(404, {});
-        res.end();
-      } else {
-        next();
-      }
-    },
+    // reap every 6 seconds, 6 seconds maxAge
+    connect.session({cookie: {maxAge: 6000}, store: mongo_store, secret: 'foo'}),
 
     // Increment views
     function (req, res) {
