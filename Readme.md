@@ -27,6 +27,17 @@ You can build your MongoDB connection url passing an object with the following p
 Or just the url:
 
   * `url` MongoDB connection url (comma separated list of urls for replica set)
+  
+It is also possible to pass instances of select node-mongodb-native classes, thus permitting the usage of existing connections
+or server configurations.
+
+Using an existing connection:
+
+  * `handle` Existing connection/database reference (instance of mongodb.Db)
+  
+Or with a server configuration:
+
+  * `serverConfig` Existing server configuration (may be an instance of either mongodb.Server, mongodb.ServerPair, mongodb.ServerCluster, mongodb.ReplSetServers) - review node-mongodb-native docs.
 
 Other options:
 
@@ -88,9 +99,3 @@ Or some combination:
         port: [27017, 27017, 27018]
       })
     }
-
-## test
-
-To run the tests:
-
-    node test
