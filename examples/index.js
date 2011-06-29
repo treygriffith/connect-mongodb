@@ -1,8 +1,12 @@
-var sys = require('sys'),
-    http = require('http'),
-    connect = require('connect'),
-    mongoStore = require('../lib/connect-mongodb'),
-    mongo_store = new mongoStore({reapInterval: 3000}); // check every 3 seconds
+var sys = require('sys')
+  , http = require('http')
+  , connect = require('connect')
+  , mongoStore = require('../lib/connect-mongodb')
+  , Db = require('mongodb').Db
+  , Server = require('mongodb').Server
+  , server_config = new Server('localhost', 27017, {auto_reconnect: true, native_parser: true})
+  , db = new Db('test', server_config, {})
+  , mongo_store = new mongoStore({db: db, reapInterval: 3000}); // check every 3 seconds
 
 http.IncomingMessage.prototype.flash = function (type, msg) {
   var msgs = this.session.flash = this.session.flash || {};

@@ -4,98 +4,65 @@ connect-mongodb is a mongoDB session store backed by [node-mongodb-native](http:
 
 Originally written by [dvv](http://github.com/dvv)
 
+## Version 1.0
+
+This version is not compatible with `0.*` versions. Now you must pass a mongodb connection, or server configuration.
+
 ## Installation
 
 via npm:
 
     $ npm install connect-mongodb
 
-## Updating
-
-If you update this module, please clean your sessions database as some changes may affect the way the sessions are stored.
-
 ## Options
 
-You can build your MongoDB connection url passing an object with the following parameters:
-
-  * `dbname` MongoDB db name _'dev' by default_
-  * `host` MongoDB server hostname _'127.0.0.1' by default_ (pass an array for replica set)
-  * `port` MongoDB server port _27017 by default_ (pass an array for replica set)
-  * `username` MongoDB server username
-  * `password` MongoDB server password
-
-Or just the url:
-
-  * `url` MongoDB connection url (comma separated list of urls for replica set)
-  
-It is also possible to pass instances of select node-mongodb-native classes, thus permitting the usage of existing connections
+To start `connect-mongodb`, you have to pass instances of select node-mongodb-native classes, thus permitting the usage of existing connections
 or server configurations.
 
 Using an existing connection:
 
-  * `handle` Existing connection/database reference (instance of mongodb.Db)
-  
+  * `db` Existing connection/database reference (instance of mongodb.Db)
+
 Or with a server configuration:
 
-  * `serverConfig` Existing server configuration (may be an instance of either mongodb.Server, mongodb.ServerPair, mongodb.ServerCluster, mongodb.ReplSetServers) - review node-mongodb-native docs.
+  * `server_config` Existing server configuration
+                   (may be an instance of either mongodb.Server, mongodb.ServerPair, mongodb.ServerCluster, mongodb.ReplSetServers)
+                   - review node-mongodb-native docs.
 
 Other options:
 
   * `collection` MongoDB collection to host sessions. _'sessions' by default_
   * `reapInterval` ms to check expired sessions to remove on db
+  * `username` To authenticate your db connection
+  * `password` To authenticate your db connection
 
 ## Example
 
 You have a complete example on `examples/index.js`.
 
-    var connect = require('connect'),
-        mongoStore = require('connect-mongodb');
+    var connect = require('connect')
+      , Db = require('mongodb').Db
+      , Server = require('mongodb').Server
+      , server_config = new Server('localhost', 27017, {auto_reconnect: true, native_parser: true})
+      , db = new Db('test', server_config, {})
+      , mongoStore = require('connect-mongodb');
 
     connect.createServer(
       connect.bodyParser(),
       connect.cookieParser(),
       connect.session({
-        cookie: {maxAge: 60000 * 20}, // 20 minutes
-        secret: 'foo',
-        store: new mongoStore({
-          dbname: 'production',
-          username: 'foo',
-          password: 'bar'
-        })
+        cookie: {maxAge: 60000 * 20} // 20 minutes
+      , secret: 'foo'
+      , store: new mongoStore({db: db})
       })
     );
 
-## Host - Port Examples for Replica Sets
+## Tests
 
-Instances running on separate machines:
+This library is tested using [testosterone](https://github.com/masylum/testosterone).
 
-    {
-      cookie: {maxAge: 60000 * 20}, // 20 minutes
-      secret: 'foo',
-      store: new mongoStore({
-        host: ['xx.xxx.xxx.xx', 'xx.xxx.xx.xxx', 'xx.xxx.xx.xxx'],
-        port: 27017
-      })
-    }
+To run the tests:
 
-...separate ports:
-
-    {
-      cookie: {maxAge: 60000 * 20}, // 20 minutes
-      secret: 'foo',
-      store: new mongoStore({
-        host: 'localhost',
-        port: [27017, 27017, 27018]
-      })
-    }
-
-Or some combination:
-
-    {
-      cookie: {maxAge: 60000 * 20}, // 20 minutes
-      secret: 'foo',
-      store: new mongoStore({
-        host: ['xx.xxx.xxx.xx', 'xx.xxx.xx.xxx', 'xx.xxx.xx.xxx'],
-        port: [27017, 27017, 27018]
-      })
-    }
+``` bash
+make
+```
