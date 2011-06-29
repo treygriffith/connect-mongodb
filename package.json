@@ -4,7 +4,7 @@
   "version": "0.4.0",
   "author": "Vladimir Dronnikov <dronnikov@gmail.com>",
   "contributors": ["Pau Ramon <masylum@gmail.com>", "ramv"],
-  "dependencies": { "mongodb": ">=0.9.4", "connect": ">=1.4.0"},
+  "dependencies": { "mongodb": ">=0.9.6-1", "connect": ">=1.4.0"},
   "main": "./lib/connect-mongodb",
   "engines": { "node": ">= 0.4.0" }
 }
