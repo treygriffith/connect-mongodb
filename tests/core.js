@@ -13,8 +13,7 @@ testosterone
 
     db.open(function () {
       require('..')(null, funk.add(assert.ok));
-      require('..')({db: {foo: 'bar'}, setInterval: -1}, funk.add(assert.ok));
-      require('..')({server_config: {foo: 'bar'}, setInterval: -1}, funk.add(assert.ok));
+      require('..')({db: null}, funk.add(assert.ok));
       require('..')({db: db, setInterval: -1}, funk.add(assert.ifError));
       require('..')({server_config: server_config, setInterval: -1}, funk.add(assert.ifError));
       funk.run(done);

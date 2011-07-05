@@ -7,6 +7,7 @@ Originally written by [dvv](http://github.com/dvv)
 ## Version 1.0
 
 This version is not compatible with `0.*` versions. Now you must pass a mongodb connection, or server configuration.
+On updating, i recomment to delete your current sessions collection data.
 
 ## Installation
 
@@ -38,7 +39,7 @@ Other options:
 
 ## Example
 
-You have a complete example on `examples/index.js`.
+You have a complete example on `example/index.js`.
 
     var connect = require('connect')
       , Db = require('mongodb').Db
@@ -59,7 +60,7 @@ You have a complete example on `examples/index.js`.
 
 ## Tests
 
-This library is tested using [testosterone](https://github.com/masylum/testosterone).
+This library is being tested using [testosterone](https://github.com/masylum/testosterone).
 
 To run the tests:
 
