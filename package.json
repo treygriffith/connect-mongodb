@@ -1,11 +1,11 @@
 {
   "name": "connect-mongodb",
   "description": "mongodb session store for connect",
-  "version": "1.0.0rc2",
+  "version": "1.0.0",
   "author": "Vladimir Dronnikov <dronnikov@gmail.com>",
   "contributors": ["Pau Ramon <masylum@gmail.com>", "ramv"],
-  "dependencies": { "mongodb": "0.9.6-7", "connect": "1.5.1"},
+  "dependencies": {"mongodb": "0.9.6-7", "connect": "1.5.1"},
   "devDependencies": {"testosterone": "1.2.0", "gently": "0.9.1", "funk": "1.5.0"},
   "main": "./lib/connect-mongodb",
-  "engines": { "node": ">= 0.4.0" }
+  "engines": {"node": ">= 0.4.0"}
 }
