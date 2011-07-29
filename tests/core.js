@@ -4,6 +4,7 @@ var testosterone = require('testosterone')({title: 'models/advertiser'})
   , Db = require('mongodb').Db
   , Server = require('mongodb').Server
   , server_config = new Server('localhost', 27017, {auto_reconnect: true, native_parser: true})
+  , url = 'mongodb://localhost:27017/test'
   , db = new Db('test', server_config, {});
 
 testosterone
@@ -16,6 +17,7 @@ testosterone
       require('..')({db: null}, funk.add(assert.ok));
       require('..')({db: db, setInterval: -1}, funk.add(assert.ifError));
       require('..')({server_config: server_config, setInterval: -1}, funk.add(assert.ifError));
+      require('..')({url: url, setInterval: -1}, funk.add(assert.ifError));
       funk.run(done);
     });
   })
