@@ -1,7 +1,7 @@
 {
   "name": "connect-mongodb",
   "description": "mongodb session store for connect",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Vladimir Dronnikov <dronnikov@gmail.com>",
   "contributors": ["Pau Ramon <masylum@gmail.com>", "ramv"],
   "repository": {"type": "git", "url": "git://github.com/masylum/connect-mongodb.git"},
