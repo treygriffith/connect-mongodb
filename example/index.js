@@ -1,4 +1,4 @@
-var sys = require('sys')
+var util = require('util')
   , http = require('http')
   , connect = require('connect')
   , mongoStore = require('../lib/connect-mongodb')
@@ -56,4 +56,4 @@ connect.createServer(
     }
 ).listen(3000);
 
-sys.puts('Connect server started on port 3000');
+util.puts('Connect server started on port 3000');
