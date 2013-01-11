@@ -58,6 +58,19 @@ You have a complete example on `example/index.js`.
       })
     );
 
+## Delete sessions from mongodb
+
+Rather than periodically deleting from node the expired documents every x seconds ```reapInterval```, you can pass reapInterval = -1 and tell mongodb to periodically delete expired docs as follows:
+
+~~~javascript
+db.sessions-collection.ensureIndex({expires: 1}, { expireAfterSeconds: 1 });
+~~~
+
+From [mongodb documentation](http://docs.mongodb.org/manual/tutorial/expire-data/):
+
+> Implemented as a special index type, TTL collections make it possible to store data in MongoDB and have the mongod automatically remove data after a specified period of time. This is ideal for some types of information like machine generated event data, logs, and session information that only need to persist in a database for a limited period of time.
+
+
 ## Tests
 
 This library is being tested using [testosterone](https://github.com/masylum/testosterone).
