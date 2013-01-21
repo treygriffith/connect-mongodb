@@ -1,3 +1,8 @@
+# MAINTAINER NEEDED!
+
+Lately I'm really busy working at Teambox and I have no time (nor motivation) to maintain this module anymore.
+Please let me know if anyone would be interested to maintain that module!
+
 # connect-mongodb
 
 connect-mongodb is a mongoDB session store backed by [node-mongodb-native](http://github.com/christkv/node-mongodb-native).
