@@ -85,3 +85,8 @@ To run the tests:
 ``` bash
 make
 ```
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
+
